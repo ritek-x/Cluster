@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Aether & Star • Send a Living Constellation</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #04020a;
+      color: #f1f5f9;
+      overflow-x: hidden;
+    }
+    .font-serif-celestial {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .font-script-celestial {
+      font-family: 'Great Vibes', cursive;
+    }
+    /* Glassmorphic Cards */
+    .glass-card {
+      background: rgba(15, 11, 28, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.55), inset 0 0 20px rgba(236, 72, 153, 0.04);
+    }
+    .glass-pill {
+      background: rgba(26, 18, 48, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-pill:hover, .glass-pill.active {
+      background: rgba(236, 72, 153, 0.22);
+      border-color: rgba(244, 114, 182, 0.45);
+      box-shadow: 0 0 18px rgba(236, 72, 153, 0.3);
+      transform: translateY(-1px);
+    }
+    .glow-title {
+      text-shadow: 0 0 20px rgba(244, 114, 182, 0.5), 0 0 40px rgba(168, 85, 247, 0.35);
+    }
+    /* Ambient Glow Pulses */
+    @keyframes cosmicBreathing {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+    .animate-cosmic {
+      animation: cosmicBreathing 5s ease-in-out infinite;
+    }
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="min-h-screen relative selection:bg-pink-500/30 selection:text-pink-100">
+
+  <!-- ============================================================== -->
+  <!-- 1. Top Global Navigation Bar -->
+  <!-- ============================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-40 glass-card border-b border-white/10 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+    <a id="nav-brand" href="#hero-section" class="flex items-center space-x-3 cursor-pointer">
+      <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center shadow-[0_0_15px_rgba(236,72,153,0.4)]">
+        <span class="text-white text-base">✦</span>
+      </div>
+      <div>
+        <span class="font-serif-celestial text-xl sm:text-2xl font-semibold tracking-wide text-white block leading-none">Aether & Star</span>
+        <span class="text-[10px] text-pink-300/70 tracking-widest uppercase">The Living Constellation Registry</span>
+      </div>
+    </a>
+
+    <!-- Nav Links & CTA -->
+    <div class="flex items-center space-x-2 sm:space-x-5 text-xs sm:text-sm">
+      <a id="nav-link-experience" href="#canvas-viewport" class="text-slate-300 hover:text-white transition hidden md:inline-block">Constellation Canvas</a>
+      <a id="nav-link-wall" href="#gallery-section" class="text-slate-300 hover:text-white transition hidden md:inline-block">Cosmic Wall</a>
+      
+      <!-- Audio Mute/Unmute Toggle -->
+      <button id="sound-btn" class="glass-pill p-2 rounded-full text-pink-200 hover:text-pink-100 flex items-center justify-center" title="Toggle Celestial Soundscape">
+        <svg id="sound-icon-on" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+        <svg id="sound-icon-off" class="w-4 h-4 hidden opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
+      </button>
+
+      <!-- Primary Action -->
+      <a id="btn-nav-create" href="#creator-section" class="px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-medium shadow-[0_0_20px_rgba(236,72,153,0.35)] transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center space-x-1.5">
+        <span>✨</span>
+        <span class="hidden sm:inline">Weave for Partner</span>
+        <span class="sm:hidden">Weave</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- 2. Hero Section: Welcome & Recipient Banner -->
+  <!-- ============================================================== -->
+  <section id="hero-section" class="relative pt-28 pb-12 sm:pt-36 sm:pb-20 px-4 sm:px-6 flex flex-col items-center justify-center text-center overflow-hidden">
+    
+    <!-- Partner Welcome Banner (Shown dynamically when URL has dedicated partner params) -->
+    <div id="recipient-welcome-banner" class="hidden mb-6 max-w-2xl w-full p-4 sm:p-5 rounded-2xl glass-card border border-pink-400/40 shadow-[0_0_35px_rgba(236,72,153,0.3)] animate-cosmic">
+      <div class="flex items-center justify-center space-x-2 text-pink-300 text-xs uppercase tracking-widest mb-1.5">
+        <span>✦</span>
+        <span>A Celestial Dedication Found For You</span>
+        <span>✦</span>
+      </div>
+      <h2 id="recipient-greeting-title" class="font-serif-celestial text-2xl sm:text-3xl md:text-4xl text-white font-normal">
+        To <span id="recipient-name-highlight" class="text-pink-300 font-semibold underline decoration-pink-500/50">My Love</span>, from <span id="sender-name-highlight" class="text-purple-300">Someone Special</span>
+      </h2>
+      <p id="recipient-message-preview" class="font-serif-celestial italic text-base sm:text-lg text-pink-100/90 mt-2 max-w-xl mx-auto">
+        “Out of an infinite universe of billions of galaxies, every star aligned just for you.”
+      </p>
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
+        <a id="btn-open-recipient-canvas" href="#canvas-viewport" class="px-5 py-2 rounded-full bg-pink-500 hover:bg-pink-400 text-white text-xs sm:text-sm font-medium shadow-[0_0_15px_rgba(236,72,153,0.5)] transition flex items-center space-x-1.5">
+          <span>🌌</span>
+          <span>Watch Your Starlight Align Below</span>
+        </a>
+        <a id="btn-create-reply" href="#creator-section" class="px-5 py-2 rounded-full glass-pill text-pink-200 text-xs sm:text-sm hover:text-white transition">
+          Weave A Star in Return ✦
+        </a>
+      </div>
+    </div>
+
+    <!-- Default Public Hero Text -->
+    <div id="default-hero-text" class="max-w-3xl">
+      <span class="inline-block px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-medium uppercase tracking-widest text-pink-300 bg-pink-950/40 border border-pink-500/30 mb-4 shadow-[0_0_15px_rgba(236,72,153,0.2)]">
+        ✦ An Unseen Animation of Romantic Physics ✦
+      </span>
+      <h1 class="font-serif-celestial text-4xl sm:text-5xl md:text-6xl font-light text-white leading-tight glow-title">
+        Weave Your Partner’s Name <br class="hidden sm:inline">
+        <span class="font-normal italic text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300">
+          Into a Living Constellation
+        </span>
+      </h1>
+      <p class="mt-4 sm:mt-5 text-sm sm:text-base text-slate-300/90 max-w-xl mx-auto font-light leading-relaxed">
+        Send a permanent piece of digital poetry. Customize your partner's name and romantic whisper, generate a unique shareable link, and watch as thousands of bioluminescent stars flock together when they open it.
+      </p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3.5">
+        <a id="hero-btn-weave" href="#creator-section" class="px-6 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white text-sm font-medium shadow-[0_0_25px_rgba(236,72,153,0.4)] transition transform hover:-translate-y-0.5">
+          ✨ Weave a Dedication Link
+        </a>
+        <a id="hero-btn-explore" href="#canvas-viewport" class="px-6 py-3 rounded-full glass-pill text-slate-200 hover:text-white text-sm font-medium transition">
+          View Interactive Sky ↓
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 3. The Interactive Living Constellation Viewport -->
+  <!-- ============================================================== -->
+  <section id="canvas-viewport" class="relative max-w-6xl mx-auto px-4 sm:px-6 my-4">
+    <div class="relative w-full h-[520px] sm:h-[620px] rounded-3xl overflow-hidden border border-white/15 shadow-[0_0_60px_rgba(0,0,0,0.8)] bg-black">
+      
+      <!-- Canvas Element -->
+      <canvas id="universe-canvas" class="w-full h-full block cursor-crosshair"></canvas>
+
+      <!-- Overlay Floating Controls (Top Right of Canvas) -->
+      <div class="absolute top-4 right-4 z-20 flex items-center space-x-2">
+        
+        <!-- Palette Dropdown -->
+        <div class="relative">
+          <button id="palette-btn" class="glass-pill px-3 py-1.5 rounded-full text-xs flex items-center space-x-1.5 text-pink-200">
+            <span id="palette-dot" class="w-2.5 h-2.5 rounded-full bg-pink-400 shadow-[0_0_8px_#f472b6]"></span>
+            <span id="palette-label" class="hidden sm:inline">Rose Nebula</span>
+            <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div id="palette-dropdown" class="hidden absolute right-0 mt-2 w-44 glass-card rounded-xl py-1.5 z-50 text-xs">
+            <button class="palette-option w-full px-3 py-2 text-left hover:bg-white/10 flex items-center space-x-2 text-pink-200" data-theme="rose">
+              <span class="w-3 h-3 rounded-full bg-pink-400 shadow-[0_0_8px_#f472b6]"></span>
+              <span>Rose Nebula</span>
+            </button>
+            <button class="palette-option w-full px-3 py-2 text-left hover:bg-white/10 flex items-center space-x-2 text-cyan-200" data-theme="opal">
+              <span class="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></span>
+              <span>Cosmic Opal</span>
+            </button>
+            <button class="palette-option w-full px-3 py-2 text-left hover:bg-white/10 flex items-center space-x-2 text-amber-200" data-theme="gold">
+              <span class="w-3 h-3 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]"></span>
+              <span>Golden Stardust</span>
+            </button>
+            <button class="palette-option w-full px-3 py-2 text-left hover:bg-white/10 flex items-center space-x-2 text-violet-200" data-theme="amethyst">
+              <span class="w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_8px_#c084fc]"></span>
+              <span>Violet Aurora</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Snapshot Save -->
+        <button id="snapshot-btn" class="glass-pill p-2 rounded-full text-pink-200 hover:text-white" title="Save Constellation Image">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        </button>
+      </div>
+
+      <!-- Live Title & Dedication Whisper Overlay (Top of Canvas) -->
+      <div class="absolute top-4 left-4 right-20 z-20 pointer-events-none">
+        <div id="live-dedication-tag" class="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass-card border border-pink-400/30 text-xs text-pink-200 mb-1">
+          <span class="w-2 h-2 rounded-full bg-pink-400 animate-pulse"></span>
+          <span>Dedicated to: <strong id="live-partner-name" class="text-white font-semibold">Sophia</strong></span>
+        </div>
+        <p id="live-whisper-quote" class="font-serif-celestial italic text-sm sm:text-base md:text-lg text-pink-100/90 drop-shadow max-w-lg mt-0.5">
+          “In an infinite cosmos, every star aligned just to bring me to you.”
+        </p>
+      </div>
+
+      <!-- Canvas Interactive Toolbar (Bottom Center of Canvas) -->
+      <div class="absolute bottom-5 left-0 right-0 z-20 flex flex-col items-center justify-center px-4 pointer-events-none">
+        
+        <!-- Helpful Interaction Hint -->
+        <div id="canvas-hint" class="text-[11px] text-pink-300/70 mb-2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 uppercase tracking-widest">
+          ✦ Drag to weave stardust &bull; Click to ripple &bull; Hold for Supernova ✦
+        </div>
+
+        <nav class="glass-card px-2.5 py-1.5 rounded-full flex items-center space-x-1 sm:space-x-2 pointer-events-auto">
+          <button id="btn-mode-name" class="glass-pill active px-3 py-1.5 rounded-full text-xs font-medium text-pink-200 flex items-center space-x-1">
+            <span>✨</span>
+            <span id="btn-name-label">Her Name</span>
+          </button>
+          <button id="btn-mode-heart" class="glass-pill px-3 py-1.5 rounded-full text-xs font-medium text-pink-200 flex items-center space-x-1">
+            <span>💖</span>
+            <span>Starry Heart</span>
+          </button>
+          <button id="btn-mode-bloom" class="glass-pill px-3 py-1.5 rounded-full text-xs font-medium text-pink-200 flex items-center space-x-1">
+            <span>🌸</span>
+            <span>Eternal Bloom</span>
+          </button>
+          <button id="btn-mode-supernova" class="glass-pill px-3 py-1.5 rounded-full text-xs font-medium text-amber-200 flex items-center space-x-1">
+            <span>💥</span>
+            <span>Supernova</span>
+          </button>
+        </nav>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 4. Public Dedication Studio: Customize & Share with Partner -->
+  <!-- ============================================================== -->
+  <section id="creator-section" class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+    <div class="text-center mb-10">
+      <span class="text-2xl">💌</span>
+      <h2 class="font-serif-celestial text-3xl sm:text-4xl text-white font-normal mt-1">Weave a Dedication for Your Partner</h2>
+      <p class="text-sm text-slate-300/80 mt-2 max-w-lg mx-auto">
+        Enter your partner's name and message below. You will receive a unique shareable link. When they visit, the galaxy will automatically morph into their name.
+      </p>
+    </div>
+
+    <!-- The Dedication Form Card -->
+    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/15 shadow-2xl relative">
+      <form id="dedication-form" class="space-y-6">
+        
+        <!-- Two-column inputs: Partner's Name & Sender's Name -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="input-partner-name" class="block text-xs uppercase tracking-wider text-pink-300 font-semibold mb-2">
+              Partner's Name or Nickname <span class="text-pink-400">*</span>
+            </label>
+            <input type="text" id="input-partner-name" required maxlength="16" placeholder="e.g. Sophia, Bella, Maya, Ethan..." value="Sophia" class="w-full px-4 py-3 rounded-xl bg-purple-950/40 border border-purple-400/30 text-white placeholder-slate-500 focus:outline-none focus:border-pink-400 focus:ring-1 focus:ring-pink-400 text-sm transition">
+            <span class="text-[11px] text-slate-400 mt-1 block">This name will be formed by stars in the night sky.</span>
+          </div>
+
+          <div>
+            <label for="input-sender-name" class="block text-xs uppercase tracking-wider text-pink-300 font-semibold mb-2">
+              Your Name (Optional)
+            </label>
+            <input type="text" id="input-sender-name" maxlength="18" placeholder="e.g. Noah, Alex, Your Secret Admirer..." value="Noah" class="w-full px-4 py-3 rounded-xl bg-purple-950/40 border border-purple-400/30 text-white placeholder-slate-500 focus:outline-none focus:border-pink-400 focus:ring-1 focus:ring-pink-400 text-sm transition">
+            <span class="text-[11px] text-slate-400 mt-1 block">Displayed on the celestial envelope they receive.</span>
+          </div>
+        </div>
+
+        <!-- Romantic Whisper / Love Note -->
+        <div>
+          <label for="select-preset-whisper" class="block text-xs uppercase tracking-wider text-pink-300 font-semibold mb-2">
+            The Celestial Whisper (Love Note)
+          </label>
+          <select id="select-preset-whisper" class="w-full px-4 py-3 rounded-xl bg-purple-950/40 border border-purple-400/30 text-white text-sm focus:outline-none focus:border-pink-400 mb-2">
+            <option value="In an infinite cosmos, every star aligned just to bring me to you.">“In an infinite cosmos, every star aligned just to bring me to you.”</option>
+            <option value="You are the rarest constellation in my universe.">“You are the rarest constellation in my universe.”</option>
+            <option value="Every atom in you was forged in a dying star to make you shine today.">“Every atom in you was forged in a dying star to make you shine today.”</option>
+            <option value="Even the most radiant nebula is quiet in your presence.">“Even the most radiant nebula is quiet in your presence.”</option>
+            <option value="Out of 8 billion souls on this spinning rock, my heart chose yours.">“Out of 8 billion souls on this spinning rock, my heart chose yours.”</option>
+            <option value="custom">✦ Write your own custom whisper... ✦</option>
+          </select>
+
+          <!-- Custom textarea (revealed if 'custom' selected) -->
+          <div id="custom-textarea-container" class="hidden mt-2">
+            <textarea id="input-custom-note" rows="2" placeholder="Write something unforgettable from your heart..." class="w-full px-4 py-2.5 rounded-xl bg-purple-950/40 border border-purple-400/30 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-pink-400"></textarea>
+          </div>
+        </div>
+
+        <!-- Cosmic Theme & Palette Selection -->
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-pink-300 font-semibold mb-2">
+            Choose Her / His Cosmic Palette
+          </label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <button type="button" class="theme-select-btn glass-pill active p-2.5 rounded-xl text-left border border-pink-400/40 flex items-center space-x-2" data-theme="rose">
+              <span class="w-3.5 h-3.5 rounded-full bg-pink-400 shadow-[0_0_8px_#f472b6]"></span>
+              <span class="text-xs text-white">Rose Nebula</span>
+            </button>
+            <button type="button" class="theme-select-btn glass-pill p-2.5 rounded-xl text-left border border-white/10 flex items-center space-x-2" data-theme="opal">
+              <span class="w-3.5 h-3.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></span>
+              <span class="text-xs text-white">Cosmic Opal</span>
+            </button>
+            <button type="button" class="theme-select-btn glass-pill p-2.5 rounded-xl text-left border border-white/10 flex items-center space-x-2" data-theme="gold">
+              <span class="w-3.5 h-3.5 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]"></span>
+              <span class="text-xs text-white">Golden Stardust</span>
+            </button>
+            <button type="button" class="theme-select-btn glass-pill p-2.5 rounded-xl text-left border border-white/10 flex items-center space-x-2" data-theme="amethyst">
+              <span class="w-3.5 h-3.5 rounded-full bg-purple-400 shadow-[0_0_8px_#c084fc]"></span>
+              <span class="text-xs text-white">Violet Aurora</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center gap-3">
+          <button type="submit" id="btn-generate-link" class="w-full sm:w-auto flex-1 py-3.5 px-6 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-medium text-sm tracking-wide shadow-[0_0_25px_rgba(236,72,153,0.4)] transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2">
+            <span>✨</span>
+            <span>Generate Dedication & Share Link</span>
+          </button>
+          <button type="button" id="btn-preview-canvas" class="w-full sm:w-auto py-3.5 px-6 rounded-xl glass-pill text-pink-200 hover:text-white text-sm font-medium transition flex items-center justify-center space-x-2">
+            <span>👁️</span>
+            <span>Live Preview in Sky</span>
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Generated Link Box (Appears after submission) -->
+      <div id="share-link-result" class="hidden mt-8 p-5 rounded-2xl bg-purple-950/60 border border-pink-400/40 shadow-inner">
+        <div class="flex items-center space-x-2 text-pink-300 text-xs uppercase tracking-wider font-semibold mb-2">
+          <span>✦</span>
+          <span>Your Unique Dedication Link is Ready</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-3">
+          Copy this link and send it to your partner via WhatsApp, text, or Instagram. When they click it, the constellation will automatically spell out their name!
+        </p>
+
+        <div class="flex items-center gap-2">
+          <input type="text" id="share-link-input" readonly class="flex-1 px-4 py-2.5 rounded-xl bg-black/60 border border-purple-400/30 text-pink-100 text-xs sm:text-sm font-mono select-all">
+          <button id="btn-copy-share-link" class="px-4 py-2.5 rounded-xl bg-pink-500 hover:bg-pink-400 text-white text-xs sm:text-sm font-semibold transition flex items-center space-x-1.5 whitespace-nowrap">
+            <span id="copy-btn-icon">📋</span>
+            <span id="copy-btn-text">Copy Link</span>
+          </button>
+          <button id="btn-native-share" class="hidden px-3.5 py-2.5 rounded-xl glass-pill text-pink-200 hover:text-white text-xs sm:text-sm font-medium transition" title="Share via Mobile Apps">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+          </button>
+        </div>
+
+        <div class="mt-3.5 flex items-center justify-between text-xs text-slate-400">
+          <span class="flex items-center space-x-1 text-emerald-400">
+            <span>✓</span>
+            <span>Link contains full encoded constellation parameters</span>
+          </span>
+          <a id="btn-open-generated-link" href="#canvas-viewport" class="text-pink-300 hover:underline">
+            Scroll to Sky Preview ↑
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 5. Cosmic Wall: Inspiring Partner Dedications Gallery -->
+  <!-- ============================================================== -->
+  <section id="gallery-section" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-white/10">
+    <div class="text-center mb-8">
+      <span class="text-xs uppercase tracking-widest text-pink-300/80 font-medium">✦ Real Inspirations ✦</span>
+      <h3 class="font-serif-celestial text-2xl sm:text-3xl text-white mt-1">Recently Woven in the Heavens</h3>
+      <p class="text-xs sm:text-sm text-slate-400 mt-1">Click any couple's constellation to watch the sky instantly transform.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      
+      <!-- Card 1 -->
+      <div class="gallery-card glass-card rounded-2xl p-5 border border-white/10 hover:border-pink-400/40 transition cursor-pointer group" data-name="Aria" data-sender="Ethan" data-quote="You are the rarest constellation in my universe." data-theme="rose">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs text-pink-300 font-mono">✦ Aria</span>
+          <span class="text-[10px] text-slate-400">From Ethan</span>
+        </div>
+        <p class="font-serif-celestial italic text-sm text-slate-200 group-hover:text-pink-100 transition">
+          “You are the rarest constellation in my universe.”
+        </p>
+        <div class="mt-3 flex items-center justify-between text-[11px] text-pink-400">
+          <span>Theme: Rose Nebula</span>
+          <span class="underline group-hover:translate-x-1 transition-transform inline-block">Load Sky →</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="gallery-card glass-card rounded-2xl p-5 border border-white/10 hover:border-cyan-400/40 transition cursor-pointer group" data-name="Lucas" data-sender="Maya" data-quote="Every atom in you was forged in a dying star to make you shine today." data-theme="opal">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs text-cyan-300 font-mono">✦ Lucas</span>
+          <span class="text-[10px] text-slate-400">From Maya</span>
+        </div>
+        <p class="font-serif-celestial italic text-sm text-slate-200 group-hover:text-cyan-100 transition">
+          “Every atom in you was forged in a dying star to make you shine today.”
+        </p>
+        <div class="mt-3 flex items-center justify-between text-[11px] text-cyan-400">
+          <span>Theme: Cosmic Opal</span>
+          <span class="underline group-hover:translate-x-1 transition-transform inline-block">Load Sky →</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="gallery-card glass-card rounded-2xl p-5 border border-white/10 hover:border-amber-400/40 transition cursor-pointer group" data-name="Elena" data-sender="Leo" data-quote="Out of 8 billion souls on this spinning rock, my heart chose yours." data-theme="gold">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs text-amber-300 font-mono">✦ Elena</span>
+          <span class="text-[10px] text-slate-400">From Leo</span>
+        </div>
+        <p class="font-serif-celestial italic text-sm text-slate-200 group-hover:text-amber-100 transition">
+          “Out of 8 billion souls on this spinning rock, my heart chose yours.”
+        </p>
+        <div class="mt-3 flex items-center justify-between text-[11px] text-amber-400">
+          <span>Theme: Golden Stardust</span>
+          <span class="underline group-hover:translate-x-1 transition-transform inline-block">Load Sky →</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 6. Footer -->
+  <!-- ============================================================== -->
+  <footer class="border-t border-white/10 py-8 px-4 text-center text-xs text-slate-500">
+    <div class="flex items-center justify-center space-x-2 text-pink-300/80 mb-2">
+      <span>✦</span>
+      <span class="font-serif-celestial text-base text-slate-300">Aether & Star</span>
+      <span>✦</span>
+    </div>
+    <p>Crafted to turn starlight into permanent love letters. Share freely with someone who lights up your world.</p>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast-notify" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full glass-card border border-pink-400/50 text-pink-100 text-xs shadow-2xl transition-all duration-300 opacity-0 pointer-events-none transform -translate-y-2 flex items-center space-x-2">
+    <span class="text-pink-300">✦</span>
+    <span id="toast-message">Copied to clipboard</span>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- 7. Core Interactive & Astronomical Engine Script -->
+  <!-- ============================================================== -->
+  <script>
+    (function() {
+      // -------------------------------------------------------------
+      // 1. Color Palettes
+      // -------------------------------------------------------------
+      const PALETTES = {
+        rose: {
+          name: "Rose Nebula",
+          dotColor: "#f472b6",
+          primary: [244, 114, 182],     // Pink
+          secondary: [192, 132, 252],   // Purple
+          highlight: [255, 235, 245],   // Soft white-pink
+          glow: [236, 72, 153],         // Deep rose
+          backgroundGlow: "rgba(35, 12, 45, 0.3)"
+        },
+        opal: {
+          name: "Cosmic Opal",
+          dotColor: "#22d3ee",
+          primary: [34, 211, 238],      // Cyan
+          secondary: [129, 140, 248],   // Indigo
+          highlight: [224, 247, 250],   // Moon white
+          glow: [6, 182, 212],          // Electric teal
+          backgroundGlow: "rgba(10, 30, 50, 0.3)"
+        },
+        gold: {
+          name: "Golden Stardust",
+          dotColor: "#fbbf24",
+          primary: [251, 191, 36],      // Amber gold
+          secondary: [248, 113, 113],   // Coral
+          highlight: [255, 250, 230],   // Champagne
+          glow: [245, 158, 11],         // Warm sun
+          backgroundGlow: "rgba(45, 30, 10, 0.3)"
+        },
+        amethyst: {
+          name: "Violet Aurora",
+          dotColor: "#c084fc",
+          primary: [192, 132, 252],     // Violet
+          secondary: [96, 165, 250],    // Ice blue
+          highlight: [243, 232, 255],   // Lavender
+          glow: [147, 51, 234],         // Deep violet
+          backgroundGlow: "rgba(30, 15, 55, 0.3)"
+        }
+      };
+
+      let activeTheme = 'rose';
+
+      // -------------------------------------------------------------
+      // 2. Synthesizer & Audio Engine (Web Audio API)
+      // -------------------------------------------------------------
+      let audioCtx = null;
+      let isMuted = false;
+      const PENTATONIC = [
+        329.63, 392.00, 440.00, 493.88, 587.33,
+        659.25, 783.99, 880.00, 987.77, 1174.66,
+        1318.51, 1567.98, 1760.00
+      ];
+
+      function initAudio() {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) {
+            audioCtx = new AudioContextClass();
+            startWarmDrone();
+          }
+        } else if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      }
+
+      let droneOsc = null;
+      let droneGain = null;
+
+      function startWarmDrone() {
+        if (!audioCtx) return;
+        try {
+          droneOsc = audioCtx.createOscillator();
+          droneGain = audioCtx.createGain();
+          const filter = audioCtx.createBiquadFilter();
+
+          filter.type = 'lowpass';
+          filter.frequency.value = 260;
+
+          droneOsc.type = 'sine';
+          droneOsc.frequency.value = 110; // A2 celestial frequency
+
+          droneGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+          droneGain.gain.exponentialRampToValueAtTime(0.02, audioCtx.currentTime + 3);
+
+          droneOsc.connect(filter);
+          filter.connect(droneGain);
+          droneGain.connect(audioCtx.destination);
+          droneOsc.start();
+        } catch (e) {}
+      }
+
+      function playChime(freqIndex, intensity = 1) {
+        if (!audioCtx || isMuted) return;
+        try {
+          const now = audioCtx.currentTime;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          const freq = PENTATONIC[freqIndex % PENTATONIC.length];
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now);
+
+          const peakGain = Math.min(0.07 * intensity, 0.14);
+          gain.gain.setValueAtTime(0, now);
+          gain.gain.linearRampToValueAtTime(peakGain, now + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start(now);
+          osc.stop(now + 2.0);
+        } catch (e) {}
+      }
+
+      function playSupernovaSound() {
+        if (!audioCtx || isMuted) return;
+        try {
+          const now = audioCtx.currentTime;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.exponentialRampToValueAtTime(55, now + 1.5);
+
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.0);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start(now);
+          osc.stop(now + 2.0);
+
+          for (let i = 0; i < 6; i++) {
+            setTimeout(function() {
+              playChime(i * 2 + 1, 1.2);
+            }, i * 90);
+          }
+        } catch (e) {}
+      }
+
+      // -------------------------------------------------------------
+      // 3. Canvas & Celestial Particle Simulation
+      // -------------------------------------------------------------
+      const canvas = document.getElementById('universe-canvas');
+      const ctx = canvas.getContext('2d');
+
+      let width = canvas.parentElement.clientWidth;
+      let height = canvas.parentElement.clientHeight;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      function resizeCanvas() {
+        width = canvas.parentElement.clientWidth;
+        height = canvas.parentElement.clientHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+        if (currentMode === 'NAME') {
+          sampleTextTargets(currentPartnerName);
+        }
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+
+      const PARTICLE_COUNT = 1800;
+      const particles = [];
+
+      let currentMode = 'NAME'; // default starts with partner's name formed!
+      let currentPartnerName = "Sophia";
+      let currentSenderName = "Noah";
+      let currentWhisper = "In an infinite cosmos, every star aligned just to bring me to you.";
+      let textTargetPoints = [];
+
+      // Pointer tracking
+      const pointer = {
+        x: width / 2,
+        y: height / 2,
+        isDown: false,
+        downTime: 0,
+        moved: false,
+        trails: []
+      };
+
+      const ripples = [];
+
+      class Particle {
+        constructor(id) {
+          this.id = id;
+          this.x = (Math.random() - 0.5) * width + width / 2;
+          this.y = (Math.random() - 0.5) * height + height / 2;
+          this.z = (Math.random() - 0.5) * 400;
+
+          this.vx = 0;
+          this.vy = 0;
+          this.vz = 0;
+
+          this.tx = this.x;
+          this.ty = this.y;
+          this.tz = this.z;
+
+          this.size = Math.random() * 1.8 + 0.6;
+          this.alpha = Math.random() * 0.7 + 0.3;
+          this.twinkleSpeed = Math.random() * 0.04 + 0.01;
+          this.twinklePhase = Math.random() * Math.PI * 2;
+          this.colorType = Math.random() > 0.4 ? 'primary' : (Math.random() > 0.5 ? 'secondary' : 'highlight');
+          
+          this.seedTheta = (id / PARTICLE_COUNT) * Math.PI * 2 * 13;
+          this.seedPhi = (id / PARTICLE_COUNT) * Math.PI * 7;
+          this.radiusMult = 0.35 + (id % 100) / 100 * 0.65;
+        }
+
+        update(time) {
+          this.twinklePhase += this.twinkleSpeed;
+
+          if (currentMode === 'NAME') {
+            this.computeNameTarget(time);
+          } else if (currentMode === 'HEART') {
+            this.computeHeartTarget(time);
+          } else if (currentMode === 'BLOOM') {
+            this.computeBloomTarget(time);
+          } else if (currentMode === 'SUPERNOVA') {
+            this.tx += this.vx;
+            this.ty += this.vy;
+            this.vx *= 0.94;
+            this.vy *= 0.94;
+          }
+
+          const stiffness = currentMode === 'NAME' ? 0.055 : 0.035;
+          const damping = currentMode === 'NAME' ? 0.82 : 0.86;
+
+          const dx = this.tx - this.x;
+          const dy = this.ty - this.y;
+          const dz = this.tz - this.z;
+
+          this.vx = (this.vx + dx * stiffness) * damping;
+          this.vy = (this.vy + dy * stiffness) * damping;
+          this.vz = (this.vz + dz * stiffness) * damping;
+
+          // Mouse vortex
+          if (pointer.moved) {
+            const mdx = pointer.x - this.x;
+            const mdy = pointer.y - this.y;
+            const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+            if (mdist < 160 && mdist > 2) {
+              const force = (1 - mdist / 160) * 0.4;
+              const tx = -mdy / mdist;
+              const ty = mdx / mdist;
+              this.vx += (mdx / mdist * 0.2 + tx * 0.8) * force;
+              this.vy += (mdy / mdist * 0.2 + ty * 0.8) * force;
+            }
+          }
+
+          // Ripples
+          for (let i = 0; i < ripples.length; i++) {
+            const r = ripples[i];
+            const rdx = this.x - r.x;
+            const rdy = this.y - r.y;
+            const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+            const distFromWave = Math.abs(rdist - r.radius);
+
+            if (distFromWave < 35) {
+              const waveForce = (1 - distFromWave / 35) * (1 - r.radius / r.maxRadius) * 2.2;
+              if (rdist > 0.01) {
+                this.vx += (rdx / rdist) * waveForce;
+                this.vy += (rdy / rdist) * waveForce;
+              }
+            }
+          }
+
+          this.x += this.vx;
+          this.y += this.vy;
+          this.z += this.vz;
+        }
+
+        computeNameTarget(time) {
+          if (textTargetPoints.length === 0) {
+            this.computeBloomTarget(time);
+            return;
+          }
+          const target = textTargetPoints[this.id % textTargetPoints.length];
+          const floatX = Math.sin(time * 0.002 + this.id) * 3;
+          const floatY = Math.cos(time * 0.0025 + this.id) * 3;
+
+          this.tx = target.x + floatX;
+          this.ty = target.y + floatY;
+          this.tz = Math.sin(time * 0.001 + this.id) * 20;
+        }
+
+        computeHeartTarget(time) {
+          const cx = width / 2;
+          const cy = height / 2;
+          const scale = Math.min(width, height) * 0.017 * (0.85 + (this.id % 50) / 50 * 0.3);
+          const t = this.seedTheta;
+          const heartBeat = Math.pow(Math.sin(time * 0.003), 4) * 12;
+
+          const hx = 16 * Math.pow(Math.sin(t), 3);
+          const hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+          const hz = Math.sin(t * 5 + time * 0.002) * 50;
+
+          const rotY = Math.sin(time * 0.0008) * 0.4;
+          const px = hx * Math.cos(rotY) - hz * Math.sin(rotY);
+          const pz = hx * Math.sin(rotY) + hz * Math.cos(rotY);
+
+          this.tx = cx + px * (scale + heartBeat * 0.02);
+          this.ty = cy + hy * (scale + heartBeat * 0.02) - 10;
+          this.tz = pz;
+        }
+
+        computeBloomTarget(time) {
+          const cx = width / 2;
+          const cy = height / 2;
+          const t = time * 0.0006;
+          const k = 7 / 3;
+          const baseR = Math.min(width, height) * 0.28 * this.radiusMult;
+          
+          const rCurve = Math.cos(k * (this.seedTheta + t * 0.5));
+          const breathing = Math.sin(time * 0.0018 + this.radiusMult * Math.PI) * 18;
+          const r = baseR * (0.65 + 0.35 * Math.abs(rCurve)) + breathing;
+
+          const rotY = t + this.seedPhi * 0.2;
+          const rotX = Math.sin(t * 0.7) * 0.35;
+
+          const localX = r * Math.cos(this.seedTheta + t);
+          const localY = r * Math.sin(this.seedTheta + t);
+          const localZ = (Math.sin(this.seedTheta * 3 + t * 2) * 90) * this.radiusMult;
+
+          const xRot = localX * Math.cos(rotY) - localZ * Math.sin(rotY);
+          const zRot = localX * Math.sin(rotY) + localZ * Math.cos(rotY);
+          const yRot = localY * Math.cos(rotX) - zRot * Math.sin(rotX);
+
+          this.tx = cx + xRot;
+          this.ty = cy + yRot;
+          this.tz = zRot;
+        }
+
+        draw(ctx) {
+          const fov = 450;
+          const depthScale = fov / (fov + this.z);
+          const renderX = this.x;
+          const renderY = this.y;
+          const renderSize = Math.max(0.4, this.size * depthScale);
+
+          const currentAlpha = Math.max(0.15, Math.min(1, this.alpha + Math.sin(this.twinklePhase) * 0.35));
+          const theme = PALETTES[activeTheme];
+          
+          let colorRgb;
+          if (this.colorType === 'primary') colorRgb = theme.primary;
+          else if (this.colorType === 'secondary') colorRgb = theme.secondary;
+          else colorRgb = theme.highlight;
+
+          ctx.beginPath();
+          ctx.arc(renderX, renderY, renderSize, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${colorRgb[0]}, ${colorRgb[1]}, ${colorRgb[2]}, ${currentAlpha * 0.9})`;
+          ctx.fill();
+
+          if (renderSize > 1.2) {
+            ctx.beginPath();
+            ctx.arc(renderX, renderY, renderSize * 2.8, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${theme.glow[0]}, ${theme.glow[1]}, ${theme.glow[2]}, ${currentAlpha * 0.22})`;
+            ctx.fill();
+          }
+        }
+      }
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new Particle(i));
+      }
+
+      // -------------------------------------------------------------
+      // 4. Text Rasterization (Sampling Her Name into Constellation Points)
+      // -------------------------------------------------------------
+      function sampleTextTargets(text) {
+        textTargetPoints = [];
+        const offCanvas = document.createElement('canvas');
+        const offCtx = offCanvas.getContext('2d');
+        const offW = Math.min(width * 0.95, 800);
+        const offH = 220;
+        offCanvas.width = offW;
+        offCanvas.height = offH;
+
+        offCtx.fillStyle = '#000000';
+        offCtx.fillRect(0, 0, offW, offH);
+
+        const fontSize = Math.min(offW / (text.length * 0.7), 100);
+        offCtx.font = `600 ${fontSize}px 'Cormorant Garamond', serif`;
+        offCtx.textAlign = 'center';
+        offCtx.textBaseline = 'middle';
+        offCtx.fillStyle = '#FFFFFF';
+        offCtx.fillText(text, offW / 2, offH / 2);
+
+        const imgData = offCtx.getImageData(0, 0, offW, offH);
+        const data = imgData.data;
+
+        const sampled = [];
+        const step = 4;
+        for (let y = 0; y < offH; y += step) {
+          for (let x = 0; x < offW; x += step) {
+            const idx = (y * offW + x) * 4;
+            if (data[idx] > 140) {
+              sampled.push({
+                x: x - offW / 2 + width / 2,
+                y: y - offH / 2 + height / 2 + 10
+              });
+            }
+          }
+        }
+
+        for (let i = sampled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = sampled[i];
+          sampled[i] = sampled[j];
+          sampled[j] = temp;
+        }
+
+        textTargetPoints = sampled.length > 0 ? sampled : [{ x: width / 2, y: height / 2 }];
+      }
+
+      function addRipple(x, y, maxRadius = 240) {
+        ripples.push({
+          x: x,
+          y: y,
+          radius: 1,
+          maxRadius: maxRadius,
+          speed: 5.5,
+          alpha: 1.0
+        });
+      }
+
+      function triggerSupernova(ox, oy) {
+        initAudio();
+        playSupernovaSound();
+
+        const x = ox !== undefined ? ox : width / 2;
+        const y = oy !== undefined ? oy : height / 2;
+
+        addRipple(x, y, Math.max(width, height) * 0.85);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          const dx = p.x - x;
+          const dy = p.y - y;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          const speed = Math.random() * 26 + 12;
+
+          p.vx = (dx / dist) * speed;
+          p.vy = (dy / dist) * speed;
+          p.vz = (Math.random() - 0.5) * 40;
+        }
+
+        showToast("✦ Supernova ignited across the cosmos ✦");
+      }
+
+      function addPointerTrail(x, y) {
+        pointer.trails.push({
+          x: x,
+          y: y,
+          alpha: 0.9,
+          size: Math.random() * 3 + 2
+        });
+        if (pointer.trails.length > 30) {
+          pointer.trails.shift();
+        }
+      }
+
+      // -------------------------------------------------------------
+      // 5. Main Animation Loop
+      // -------------------------------------------------------------
+      let lastTime = 0;
+      let chimeCooldown = 0;
+
+      function animate(time) {
+        requestAnimationFrame(animate);
+
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgba(4, 2, 10, 0.22)';
+        ctx.fillRect(0, 0, width, height);
+
+        const theme = PALETTES[activeTheme];
+        const radGrad = ctx.createRadialGradient(width/2, height/2, 20, width/2, height/2, Math.max(width, height) * 0.55);
+        radGrad.addColorStop(0, theme.backgroundGlow);
+        radGrad.addColorStop(1, 'rgba(4, 2, 10, 0)');
+        ctx.fillStyle = radGrad;
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.globalCompositeOperation = 'lighter';
+
+        // Trails
+        if (pointer.trails.length > 1) {
+          ctx.beginPath();
+          ctx.moveTo(pointer.trails[0].x, pointer.trails[0].y);
+          for (let i = 1; i < pointer.trails.length; i++) {
+            ctx.lineTo(pointer.trails[i].x, pointer.trails[i].y);
+          }
+          ctx.strokeStyle = `rgba(${theme.primary[0]}, ${theme.primary[1]}, ${theme.primary[2]}, 0.35)`;
+          ctx.lineWidth = 3;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+
+          for (let i = 0; i < pointer.trails.length; i++) {
+            const pt = pointer.trails[i];
+            pt.alpha *= 0.92;
+            ctx.beginPath();
+            ctx.arc(pt.x, pt.y, pt.size * pt.alpha, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${theme.highlight[0]}, ${theme.highlight[1]}, ${theme.highlight[2]}, ${pt.alpha})`;
+            ctx.fill();
+          }
+          pointer.trails = pointer.trails.filter(pt => pt.alpha > 0.03);
+        }
+
+        // Ripples
+        for (let i = ripples.length - 1; i >= 0; i--) {
+          const r = ripples[i];
+          r.radius += r.speed;
+          r.alpha = Math.max(0, 1 - r.radius / r.maxRadius);
+
+          if (r.alpha <= 0.01) {
+            ripples.splice(i, 1);
+            continue;
+          }
+
+          ctx.beginPath();
+          ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${theme.glow[0]}, ${theme.glow[1]}, ${theme.glow[2]}, ${r.alpha * 0.45})`;
+          ctx.lineWidth = 2.5;
+          ctx.stroke();
+        }
+
+        // Particles
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update(time);
+          particles[i].draw(ctx);
+        }
+
+        // Constellation lines for NAME and HEART mode
+        if (currentMode === 'NAME' || currentMode === 'HEART') {
+          const maxDist = currentMode === 'NAME' ? 22 : 30;
+          ctx.strokeStyle = `rgba(${theme.primary[0]}, ${theme.primary[1]}, ${theme.primary[2]}, 0.15)`;
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          for (let i = 0; i < particles.length; i += 3) {
+            for (let j = i + 1; j < Math.min(i + 12, particles.length); j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              if (dx * dx + dy * dy < maxDist * maxDist) {
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+              }
+            }
+          }
+          ctx.stroke();
+        }
+
+        // Long press Supernova charge
+        if (pointer.isDown) {
+          const hold = Date.now() - pointer.downTime;
+          if (hold > 250) {
+            const prog = Math.min(1, (hold - 250) / 1000);
+            ctx.beginPath();
+            ctx.arc(pointer.x, pointer.y, prog * 60, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(${theme.highlight[0]}, ${theme.highlight[1]}, ${theme.highlight[2]}, ${prog * 0.8})`;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            if (prog >= 1) {
+              triggerSupernova(pointer.x, pointer.y);
+              pointer.isDown = false;
+            }
+          }
+        }
+
+        if (pointer.moved && time - chimeCooldown > 150) {
+          const noteIdx = Math.floor((pointer.y / height) * PENTATONIC.length);
+          playChime(noteIdx, 0.7);
+          chimeCooldown = time;
+        }
+
+        lastTime = time;
+      }
+
+      // -------------------------------------------------------------
+      // 6. Pointer & Canvas Listeners
+      // -------------------------------------------------------------
+      canvas.addEventListener('pointermove', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        pointer.x = e.clientX - rect.left;
+        pointer.y = e.clientY - rect.top;
+        pointer.moved = true;
+        addPointerTrail(pointer.x, pointer.y);
+      });
+
+      canvas.addEventListener('pointerdown', function(e) {
+        initAudio();
+        const hint = document.getElementById('canvas-hint');
+        if (hint) hint.classList.add('hidden');
+
+        const rect = canvas.getBoundingClientRect();
+        pointer.isDown = true;
+        pointer.downTime = Date.now();
+        pointer.x = e.clientX - rect.left;
+        pointer.y = e.clientY - rect.top;
+        addRipple(pointer.x, pointer.y);
+        playChime(Math.floor(Math.random() * PENTATONIC.length), 1.2);
+      });
+
+      canvas.addEventListener('pointerup', function(e) {
+        if (!pointer.isDown) return;
+        const rect = canvas.getBoundingClientRect();
+        const hold = Date.now() - pointer.downTime;
+        pointer.isDown = false;
+        if (hold < 300) {
+          addRipple(e.clientX - rect.left, e.clientY - rect.top, 180);
+        }
+      });
+
+      // -------------------------------------------------------------
+      // 7. Viewport Controls & Navigation Buttons
+      // -------------------------------------------------------------
+      const btnModeName = document.getElementById('btn-mode-name');
+      const btnModeHeart = document.getElementById('btn-mode-heart');
+      const btnModeBloom = document.getElementById('btn-mode-bloom');
+      const btnModeSupernova = document.getElementById('btn-mode-supernova');
+      const btnNameLabel = document.getElementById('btn-name-label');
+
+      function setActiveModeBtn(btn) {
+        [btnModeName, btnModeHeart, btnModeBloom, btnModeSupernova].forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+
+      btnModeName.addEventListener('click', function() {
+        initAudio();
+        currentMode = 'NAME';
+        setActiveModeBtn(btnModeName);
+        sampleTextTargets(currentPartnerName);
+        playChime(5, 1.2);
+      });
+
+      btnModeHeart.addEventListener('click', function() {
+        initAudio();
+        currentMode = 'HEART';
+        setActiveModeBtn(btnModeHeart);
+        playChime(7, 1.2);
+        addRipple(width / 2, height / 2, 320);
+      });
+
+      btnModeBloom.addEventListener('click', function() {
+        initAudio();
+        currentMode = 'BLOOM';
+        setActiveModeBtn(btnModeBloom);
+        playChime(4, 1.2);
+      });
+
+      btnModeSupernova.addEventListener('click', function() {
+        triggerSupernova(width / 2, height / 2);
+        setActiveModeBtn(btnModeSupernova);
+      });
+
+      // Palette selector
+      const paletteBtn = document.getElementById('palette-btn');
+      const paletteDropdown = document.getElementById('palette-dropdown');
+      const paletteDot = document.getElementById('palette-dot');
+      const paletteLabel = document.getElementById('palette-label');
+
+      paletteBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        paletteDropdown.classList.toggle('hidden');
+      });
+
+      window.addEventListener('click', function() {
+        paletteDropdown.classList.add('hidden');
+      });
+
+      function applyTheme(themeKey) {
+        if (!PALETTES[themeKey]) return;
+        activeTheme = themeKey;
+        const theme = PALETTES[themeKey];
+        paletteDot.style.backgroundColor = theme.dotColor;
+        paletteDot.style.boxShadow = `0 0 8px ${theme.dotColor}`;
+        paletteLabel.textContent = theme.name;
+        paletteDropdown.classList.add('hidden');
+
+        document.querySelectorAll('.theme-select-btn').forEach(btn => {
+          if (btn.getAttribute('data-theme') === themeKey) {
+            btn.classList.add('active', 'border-pink-400/40');
+          } else {
+            btn.classList.remove('active', 'border-pink-400/40');
+          }
+        });
+      }
+
+      document.querySelectorAll('.palette-option').forEach(option => {
+        option.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const themeKey = this.getAttribute('data-theme');
+          applyTheme(themeKey);
+          playChime(6, 1.0);
+        });
+      });
+
+      document.querySelectorAll('.theme-select-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const themeKey = this.getAttribute('data-theme');
+          applyTheme(themeKey);
+        });
+      });
+
+      // Audio Mute/Unmute
+      const soundBtn = document.getElementById('sound-btn');
+      const soundIconOn = document.getElementById('sound-icon-on');
+      const soundIconOff = document.getElementById('sound-icon-off');
+
+      soundBtn.addEventListener('click', function() {
+        initAudio();
+        isMuted = !isMuted;
+        if (isMuted) {
+          soundIconOn.classList.add('hidden');
+          soundIconOff.classList.remove('hidden');
+          if (droneGain) droneGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+        } else {
+          soundIconOn.classList.remove('hidden');
+          soundIconOff.classList.add('hidden');
+          if (droneGain) droneGain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+          playChime(5, 1.2);
+        }
+      });
+
+      // Snapshot save
+      const snapshotBtn = document.getElementById('snapshot-btn');
+      snapshotBtn.addEventListener('click', function() {
+        try {
+          const dataURL = canvas.toDataURL('image/png');
+          const link = document.createElement('a');
+          link.download = `constellation_${currentPartnerName.toLowerCase()}_${Date.now()}.png`;
+          link.href = dataURL;
+          link.click();
+          showToast("✦ Starlight snapshot saved to your pictures ✦");
+        } catch (e) {
+          showToast("✦ Starlight snapshot captured ✦");
+        }
+      });
+
+      // -------------------------------------------------------------
+      // 8. Public Dedication Studio & Link Sharing
+      // -------------------------------------------------------------
+      const form = document.getElementById('dedication-form');
+      const inputPartnerName = document.getElementById('input-partner-name');
+      const inputSenderName = document.getElementById('input-sender-name');
+      const selectPresetWhisper = document.getElementById('select-preset-whisper');
+      const customTextareaContainer = document.getElementById('custom-textarea-container');
+      const inputCustomNote = document.getElementById('input-custom-note');
+      const btnPreviewCanvas = document.getElementById('btn-preview-canvas');
+
+      const shareLinkResult = document.getElementById('share-link-result');
+      const shareLinkInput = document.getElementById('share-link-input');
+      const btnCopyShareLink = document.getElementById('btn-copy-share-link');
+      const copyBtnText = document.getElementById('copy-btn-text');
+      const btnNativeShare = document.getElementById('btn-native-share');
+
+      const livePartnerName = document.getElementById('live-partner-name');
+      const liveWhisperQuote = document.getElementById('live-whisper-quote');
+
+      selectPresetWhisper.addEventListener('change', function() {
+        if (selectPresetWhisper.value === 'custom') {
+          customTextareaContainer.classList.remove('hidden');
+          inputCustomNote.focus();
+        } else {
+          customTextareaContainer.classList.add('hidden');
+        }
+      });
+
+      function updateActiveDedication(partner, sender, whisper, theme) {
+        currentPartnerName = partner || "Sophia";
+        currentSenderName = sender || "Noah";
+        currentWhisper = whisper || "In an infinite cosmos, every star aligned just to bring me to you.";
+
+        livePartnerName.textContent = currentPartnerName;
+        btnNameLabel.textContent = currentPartnerName;
+        liveWhisperQuote.textContent = `“${currentWhisper.replace(/^“|”$/g, '')}”`;
+
+        if (theme) applyTheme(theme);
+
+        sampleTextTargets(currentPartnerName);
+        currentMode = 'NAME';
+        setActiveModeBtn(btnModeName);
+
+        addRipple(width / 2, height / 2, 380);
+      }
+
+      function buildShareableURL(partner, sender, whisper, theme) {
+        const url = new URL(window.location.href);
+        url.hash = `dedicate?to=${encodeURIComponent(partner)}&from=${encodeURIComponent(sender)}&whisper=${encodeURIComponent(whisper)}&theme=${encodeURIComponent(theme)}`;
+        return url.toString();
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        initAudio();
+
+        const partner = inputPartnerName.value.trim() || "My Love";
+        const sender = inputSenderName.value.trim() || "Someone Special";
+        let whisper = selectPresetWhisper.value;
+        if (whisper === 'custom') {
+          whisper = inputCustomNote.value.trim() || "You are the poetry written in starlight.";
+        }
+
+        updateActiveDedication(partner, sender, whisper, activeTheme);
+
+        const shareUrl = buildShareableURL(partner, sender, whisper, activeTheme);
+        shareLinkInput.value = shareUrl;
+        shareLinkResult.classList.remove('hidden');
+
+        if (navigator.share) {
+          btnNativeShare.classList.remove('hidden');
+        }
+
+        // Copy immediately to make it effortless
+        copyShareLink();
+        showToast("✦ Dedication link created & copied to clipboard! ✦");
+      });
+
+      btnPreviewCanvas.addEventListener('click', function() {
+        initAudio();
+        const partner = inputPartnerName.value.trim() || "Sophia";
+        const sender = inputSenderName.value.trim() || "Noah";
+        let whisper = selectPresetWhisper.value;
+        if (whisper === 'custom') {
+          whisper = inputCustomNote.value.trim() || "You are the poetry written in starlight.";
+        }
+        updateActiveDedication(partner, sender, whisper, activeTheme);
+
+        document.getElementById('canvas-viewport').scrollIntoView({ behavior: 'smooth' });
+        showToast(`✦ Sky preview aligned for ${partner} ✦`);
+      });
+
+      function copyShareLink() {
+        const text = shareLinkInput.value;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => {
+            handleCopySuccess();
+          }).catch(() => {
+            fallbackCopy();
+          });
+        } else {
+          fallbackCopy();
+        }
+      }
+
+      function fallbackCopy() {
+        shareLinkInput.focus();
+        shareLinkInput.select();
+        try {
+          document.execCommand('copy');
+          handleCopySuccess();
+        } catch (err) {
+          showToast("Please copy the link directly from the box");
+        }
+      }
+
+      function handleCopySuccess() {
+        copyBtnText.textContent = "Copied! ✓";
+        showToast("✦ Dedication link copied to clipboard ✦");
+        setTimeout(() => {
+          copyBtnText.textContent = "Copy Link";
+        }, 2500);
+      }
+
+      btnCopyShareLink.addEventListener('click', copyShareLink);
+
+      btnNativeShare.addEventListener('click', function() {
+        if (navigator.share) {
+          navigator.share({
+            title: `A Living Constellation for ${currentPartnerName}`,
+            text: `A star was woven in the heavens for you: “${currentWhisper}”`,
+            url: shareLinkInput.value
+          }).catch(() => {});
+        }
+      });
+
+      // -------------------------------------------------------------
+      // 9. Inspiring Gallery Cards Click Handler
+      // -------------------------------------------------------------
+      document.querySelectorAll('.gallery-card').forEach(card => {
+        card.addEventListener('click', function() {
+          initAudio();
+          const name = this.getAttribute('data-name');
+          const sender = this.getAttribute('data-sender');
+          const quote = this.getAttribute('data-quote');
+          const theme = this.getAttribute('data-theme');
+
+          inputPartnerName.value = name;
+          inputSenderName.value = sender;
+          selectPresetWhisper.value = quote;
+          customTextareaContainer.classList.add('hidden');
+
+          updateActiveDedication(name, sender, quote, theme);
+          document.getElementById('canvas-viewport').scrollIntoView({ behavior: 'smooth' });
+          showToast(`✦ Sky aligned to ${name}'s constellation ✦`);
+        });
+      });
+
+      // -------------------------------------------------------------
+      // 10. URL Hash / Parameter Reader (For Partner Visits)
+      // -------------------------------------------------------------
+      function parseUrlDedication() {
+        let params = null;
+        if (window.location.hash.startsWith('#dedicate?')) {
+          params = new URLSearchParams(window.location.hash.slice(10));
+        } else if (window.location.search) {
+          params = new URLSearchParams(window.location.search);
+        }
+
+        if (params && params.get('to')) {
+          const partner = params.get('to');
+          const sender = params.get('from') || 'Someone Special';
+          const whisper = params.get('whisper') || 'In an infinite cosmos, every star aligned just to bring me to you.';
+          const theme = params.get('theme') || 'rose';
+
+          // Reveal Recipient Welcome Banner
+          const banner = document.getElementById('recipient-welcome-banner');
+          const defaultHero = document.getElementById('default-hero-text');
+          const highlightName = document.getElementById('recipient-name-highlight');
+          const highlightSender = document.getElementById('sender-name-highlight');
+          const messagePreview = document.getElementById('recipient-message-preview');
+
+          highlightName.textContent = partner;
+          highlightSender.textContent = sender;
+          messagePreview.textContent = `“${whisper.replace(/^“|”$/g, '')}”`;
+
+          banner.classList.remove('hidden');
+          defaultHero.classList.add('hidden');
+
+          // Prepopulate inputs
+          inputPartnerName.value = partner;
+          inputSenderName.value = sender;
+
+          updateActiveDedication(partner, sender, whisper, theme);
+        } else {
+          // Default initial state
+          updateActiveDedication("Sophia", "Noah", "In an infinite cosmos, every star aligned just to bring me to you.", "rose");
+        }
+      }
+
+      // -------------------------------------------------------------
+      // 11. Toast System
+      // -------------------------------------------------------------
+      const toastNotify = document.getElementById('toast-notify');
+      const toastMsg = document.getElementById('toast-message');
+
+      function showToast(msg) {
+        toastMsg.textContent = msg;
+        toastNotify.classList.remove('opacity-0', '-translate-y-2');
+        toastNotify.classList.add('opacity-100', 'translate-y-0');
+        setTimeout(() => {
+          toastNotify.classList.add('opacity-0', '-translate-y-2');
+          toastNotify.classList.remove('opacity-100', 'translate-y-0');
+        }, 3200);
+      }
+
+      // -------------------------------------------------------------
+      // 12. Initialization
+      // -------------------------------------------------------------
+      resizeCanvas();
+      parseUrlDedication();
+      requestAnimationFrame(animate);
+
+    })();
+  </script>
+</body>
+</html>
